@@ -12,7 +12,13 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    public Long getProductsCount(){
+        return productRepository.count();
+    }
     public List<Product> getAllProducts(){return productRepository.findAll();}
     public Product createProduct(Product product) {return productRepository.save(product);}
     public Product getProductById(long id) {return productRepository.findById(id).orElse(null);}
+    public Product updateProduct(Product product){
+       return productRepository.save(product);
+    }
 }

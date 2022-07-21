@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/product")
 public class ProductController {
@@ -21,9 +23,31 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public Product createProduct(@ModelAttribute("product") Product product) {
-//        return productService.createProduct(product);
-        System.out.println(product.getProductName() + " " + product.getProductDescription());
-        return null;
+    public String createProduct(@ModelAttribute("product") Product product) {
+        productService.createProduct(product);
+        return "dashboard";
+//        System.out.println(product.getProductName() + " " + product.getProductDescription());
+    }
+    @GetMapping("/")
+    public String showAllProducts(Model model){
+        List<Product> productList = productService.getAllProducts();
+        model.addAttribute("ProductList",productList);
+        return "list-products";
+
+    }
+    @GetMapping("/spuf/{id}")
+    public String showUpdateProductForm(@PathVariable Long id, Model model){
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "update-product";
+    }
+
+    @PostMapping("/spuf")
+    public String updateProduct(@ModelAttribute("product") Product product){
+        Product exitingProduct=productService.getProductById(product.getId());
+        exitingProduct.setProductName(product.getProductName());
+        exitingProduct.setProductDescription(product.getProductDescription());
+        productService.updateProduct(exitingProduct);
+        return "dashboard";
     }
 }
