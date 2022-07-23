@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CATEGORIES")
@@ -15,8 +16,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     @Column(name = "CATEGORY_NAME")
     private  String categoryName;
-    @Column(name = "CATEGORY_DESCRIPTION")
-    private String categoryDescription;
+
+    @OneToMany
+    private List<Product> product;
+
 }

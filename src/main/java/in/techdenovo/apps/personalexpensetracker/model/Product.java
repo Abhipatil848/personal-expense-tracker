@@ -19,4 +19,6 @@ public class Product {
     private String productName;
     @Column(name = "PRODUCT_DESCRIPTION")
     private String productDescription;
+    @ManyToOne
+    private Category category;
 }

@@ -30,9 +30,22 @@ public class CategoryController {
     }
 
     @GetMapping("/")
-    public String showAllProducts(Model model) {
+    public String showAllCategory(Model model) {
         List<Category> categoryList = categoryService.getAllCategories();
         model.addAttribute("CategoryList", categoryList);
         return "list-category";
+    }
+    @GetMapping("/update/{id}")
+    public String showUpdateCategoryForm(@PathVariable Long id, Model model){
+        Category category = categoryService.getCategoryById(id);
+        model.addAttribute("category", category);
+        return "update-category";
+    }
+    @PostMapping("/update")
+    public String updateCategory(@ModelAttribute("category") Category category){
+        Category exhistingCategory=categoryService.getCategoryById(category.getId());
+        exhistingCategory.setCategoryName(category.getCategoryName());
+        categoryService.updateCategory(exhistingCategory);
+        return "dashboard";
     }
 }

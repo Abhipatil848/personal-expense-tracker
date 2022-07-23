@@ -3,6 +3,7 @@ package in.techdenovo.apps.personalexpensetracker.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,5 +22,6 @@ public class Expense {
     @Column(name = "AMOUNT")
     private Double amount;
     @Column(name = "DATE")
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date date;
 }
