@@ -16,12 +16,15 @@
         <div class="row">
             
             <div class="col">
-                <table class="table">
+                <table class="table table-sm">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -29,14 +32,16 @@
                             <td th:text="${product.id}">1</td>
                             <td th:text="${product.productName}">Elon</td>
                             <td th:text="${product.productDescription}">Musk</td>
+                            <td><div th:object="category= ${product.category}" th:text="${category.categoryName}"></div></td>
                             <td>
-                                <a th:href="@{/product/spuf/{id}(id=${product.id})}" class="btn btn-info">
+                                <a th:href="@{/product/spuf/{id}(id=${product.id})}" class="">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
 
                             </td>
                         </tr>
                     </tbody>
+
                 </table>
             </div>
             

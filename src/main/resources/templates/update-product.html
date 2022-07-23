@@ -28,6 +28,15 @@
                     <span class="input-group-text" >Description </span>
                     <input type="text" th:field="*{productDescription}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Category </span>
+                    <select class="form-select" aria-label="Default select example" th:field="*{category}">
+                        <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:utext="${category.categoryName}"></option>
+
+                      </select>
+                </div>
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <button class="btn btn-primary" type="submit">Update Product</button>
 

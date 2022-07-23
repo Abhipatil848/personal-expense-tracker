@@ -1,6 +1,8 @@
 package in.techdenovo.apps.personalexpensetracker.controller;
 
+import in.techdenovo.apps.personalexpensetracker.model.Category;
 import in.techdenovo.apps.personalexpensetracker.model.Product;
+import in.techdenovo.apps.personalexpensetracker.service.CategoryService;
 import in.techdenovo.apps.personalexpensetracker.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +16,13 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService productService;
+    @Autowired
+    CategoryService categoryService;
 
     @GetMapping("/add")
     public String showCreateProductForm(Model model) {
+        List<Category> categories=categoryService.getAllCategories();
+        model.addAttribute("categories",categories);
         Product product = new Product();
         model.addAttribute("product", product);
         return "add-product";
@@ -47,6 +53,7 @@ public class ProductController {
         Product exitingProduct=productService.getProductById(product.getId());
         exitingProduct.setProductName(product.getProductName());
         exitingProduct.setProductDescription(product.getProductDescription());
+        exitingProduct.setCategory(product.getCategory());
         productService.updateProduct(exitingProduct);
         return "dashboard";
     }
