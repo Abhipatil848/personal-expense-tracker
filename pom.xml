@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>in.techdenovo.apps</groupId>
-	<artifactId>personal-expense-tracker</artifactId>
+	<artifactId>personal-transaction-tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>personal-expense-tracker</name>
+	<name>personal-transaction-tracker</name>
 	<description>trackingpersonalexpenses</description>
 	<properties>
 		<java.version>11</java.version>

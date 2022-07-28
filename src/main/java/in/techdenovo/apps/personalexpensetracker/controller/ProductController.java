@@ -43,6 +43,8 @@ public class ProductController {
     }
     @GetMapping("/spuf/{id}")
     public String showUpdateProductForm(@PathVariable Long id, Model model){
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories",categories);
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         return "update-product";

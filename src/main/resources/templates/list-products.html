@@ -32,7 +32,7 @@
                             <td th:text="${product.id}">1</td>
                             <td th:text="${product.productName}">Elon</td>
                             <td th:text="${product.productDescription}">Musk</td>
-                            <td><div th:object="category= ${product.category}" th:text="${category.categoryName}"></div></td>
+                            <td><div th:text="${product.category}"></div></td>
                             <td>
                                 <a th:href="@{/product/spuf/{id}(id=${product.id})}" class="">
                                     <i class="fa-solid fa-pen-to-square"></i>
